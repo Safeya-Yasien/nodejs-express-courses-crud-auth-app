@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const app = express();
 app.use(express.json());
@@ -16,6 +17,7 @@ mongoose
     console.error("MongoDB connection error:", err);
   });
 
+app.use("/uploads", express.static(path.join(__dirname, "public")));
 app.use("/api/courses", courseRoutes);
 app.use("/api/users", userRoutes);
 

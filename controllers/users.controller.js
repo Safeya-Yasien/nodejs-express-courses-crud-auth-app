@@ -36,6 +36,7 @@ const register = async (req, res) => {
       email,
       password: hashedPassword,
       role,
+      image: req.file.filename,
     });
 
     await newUser.save();
