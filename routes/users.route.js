@@ -10,7 +10,7 @@ const verifyToken = require("../middlewares/verifyToken");
 
 // Get all users
 router.get("/", verifyToken, getAllUsers);
-
+  
 // Register new user
 router.post("/register", register);
 

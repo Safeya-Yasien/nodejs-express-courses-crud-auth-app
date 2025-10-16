@@ -18,8 +18,9 @@ const getAllUsers = async (req, res) => {
 
 const register = async (req, res) => {
   try {
-    // check if user with the same email already exists
-    const existingUser = await User.findOne({ email: req.body.email });
+    const { name, email, password, role } = req.body;
+
+    const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return res.status(409).json({
@@ -28,12 +29,13 @@ const register = async (req, res) => {
       });
     }
 
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = new User({
-      name: req.body.name,
-      email: req.body.email,
+      name,
+      email,
       password: hashedPassword,
+      role,
     });
 
     await newUser.save();
@@ -49,8 +51,9 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    // check if user with the same email already exists
-    const existingUser = await User.findOne({ email: req.body.email });
+    const { email, password } = req.body;
+
+    const existingUser = await User.findOne({ email });
 
     if (!existingUser) {
       return res.status(404).json({
@@ -60,7 +63,7 @@ const login = async (req, res) => {
     }
 
     const isPasswordValid = await bcrypt.compare(
-      req.body.password,
+      password,
       existingUser.password
     );
 
@@ -71,10 +74,10 @@ const login = async (req, res) => {
       });
     }
 
-    // if password is valid, return jwt token
     const token = jwt.sign(
-      { id: existingUser._id },
-      process.env.JWT_SECRET_KEY
+      { id: existingUser._id, role: existingUser.role },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "1h" }
     );
 
     res.status(201).json({

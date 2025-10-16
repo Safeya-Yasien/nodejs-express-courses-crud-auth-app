@@ -13,6 +13,7 @@ const {
   handleValidationErrors,
 } = require("../middlewares/courseValidator");
 const verifyToken = require("../middlewares/verifyToken");
+const authorizeRoles = require("../middlewares/authorizeRoles");
 
 // Get all courses
 router.get("/", getAllCourses);
@@ -22,6 +23,7 @@ router.post(
   "/",
   courseValidator(),
   verifyToken,
+  authorizeRoles(["admin"]),
   handleValidationErrors,
   createCourse
 );
@@ -31,13 +33,14 @@ router.put(
   "/:id",
   courseValidator(),
   verifyToken,
+  authorizeRoles(["admin"]),
   handleValidationErrors,
   updateCourse
 );
 
 // Delete course by ID
-router.delete("/:id", verifyToken, deleteCourse);
+router.delete("/:id", verifyToken, authorizeRoles(["admin"]), deleteCourse);
 // Delete all courses
-router.delete("/", verifyToken, deleteAllCourses);
+router.delete("/", verifyToken, authorizeRoles(["admin"]), deleteAllCourses);
 
 module.exports = router;
