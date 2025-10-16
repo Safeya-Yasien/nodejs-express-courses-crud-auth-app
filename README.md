@@ -4,9 +4,12 @@ This project is a simple backend for a course management system. It uses Node.js
 
 ## Features
 
-- User authentication
-- Course management
-- File upload
+- User Authentication (Register, Login, JWT-based Auth)
+- Role-based Access Control (Admin, Instructor, Student)
+- CRUD Operations for Courses
+- File Upload using Multer
+- Mongoose Schema Validation
+- Secure Password Hashing with bcryptjs
 
 ## Installation
 
@@ -80,16 +83,12 @@ npm start
 - multer
   it's a middleware for express.js that allows you to upload files to a server.
 
-- structure of the project
-  - app.js
-    it's the entry point of the application.
-  - models
-    it's a directory that contains the schemas, models, and other data structures for the application.
-  - controllers
-    it's a directory that contains the functions for the application which are called by the routes.
-  - routes
-    it's a directory that contains the routes for the application.
-  - views
-    it's a directory that contains the html templates for the application.
-  - middleware
-    it's a directory that contains the validations, authentication, and other middleware for the application.
+nodejs-express-crud-auth-app/
+│
+├── app.js # Entry point of the application
+├── models/ # MongoDB schemas and models
+├── controllers/ # Request handlers (business logic)
+├── routes/ # Application routes
+├── middlewares/ # Authentication, validation, and utilities
+├── public/ # Uploaded files or static assets
+└── views/ # (Optional) HTML templates
