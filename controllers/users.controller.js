@@ -97,4 +97,18 @@ const login = async (req, res) => {
 
 // logout
 
-module.exports = { getAllUsers, register, login };
+// delete all users
+const deleteAllUsers = async (req, res) => {
+  try {
+    await User.deleteMany();
+    res.status(200).json({ status: "success", data: null });
+  } catch (err) {
+    res.status(500).json({
+      status: "error",
+      message: "Failed to delete users",
+      error: err.message,
+    });
+  }
+};
+
+module.exports = { getAllUsers, register, login, deleteAllUsers };

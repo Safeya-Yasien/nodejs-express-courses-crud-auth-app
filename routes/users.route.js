@@ -5,9 +5,11 @@ const {
   getAllUsers,
   register,
   login,
+  deleteAllUsers,
 } = require("../controllers/users.controller");
 const verifyToken = require("../middlewares/verifyToken");
 const upload = require("../middlewares/uploadImage");
+const authorizeRoles = require("../middlewares/authorizeRoles");
 
 // Get all users
 router.get("/", verifyToken, getAllUsers);
@@ -17,5 +19,8 @@ router.post("/register", upload.single("image"), register);
 
 // Login user
 router.post("/login", login);
+
+// delete all users
+router.delete("/", verifyToken, authorizeRoles(["admin"]), deleteAllUsers);
 
 module.exports = router;
