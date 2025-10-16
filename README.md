@@ -1,4 +1,51 @@
-what i learned in this project
+# Node.js Courses Project
+
+This project is a simple backend for a course management system. It uses Node.js, Express.js, MongoDB, and Mongoose for the backend. The project includes user authentication, course management, and a file upload feature.
+
+## Features
+
+- User authentication
+- Course management
+- File upload
+
+## Installation
+
+To install the project, follow these steps:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/courses-project.git
+```
+
+2. Navigate to the project directory:
+
+```bash
+cd courses-project
+```
+
+3. Install the dependencies:
+
+```bash
+npm install
+```
+
+4. Create a .env file in the root directory and add the following environment variables:
+
+```
+MONGODB_URI=mongodb+srv://username:password@cluster0.xxxxx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+JWT_SECRET_KEY=your_secret_key
+```
+
+5. Start the server:
+
+```bash
+npm start
+```
+
+6. Open your browser and navigate to http://localhost:5000/
+
+# what i learned in this project
 
 - node.js
 
