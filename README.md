@@ -30,6 +30,9 @@ what i learned in this project
 - nodejs crypto module
   it's a built-in module in Node.js that provides cryptographic functions for encryption, decryption, hashing, and more.
 
+- multer
+  it's a middleware for express.js that allows you to upload files to a server.
+
 - structure of the project
   - app.js
     it's the entry point of the application.
